@@ -6,7 +6,7 @@ makes OpenSMTPD's plusext `user+ext@example` compatible with qmail's dashext
 
 ## Installing it on Debian
 
-You need to add my package signing key to your APT keyring:
+As **root**, you need to add my package signing key to your APT keyring:
 
 ```
 apt-key adv --keyserver keys.gnupg.net --recv-keys 02CBD940A78049AF
