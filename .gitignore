@@ -1,0 +1,4 @@
+*.o
+.git
+filter_plusdash
+*.deb
