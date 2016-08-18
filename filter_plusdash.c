@@ -48,21 +48,7 @@ on_rcpt(uint64_t id, struct mailaddr *rcpt)
 int
 main(int argc, char **argv)
 {
-	int	ch;
-
 	log_init(-1);
-
-	while ((ch = getopt(argc, argv, "")) != -1) {
-		switch (ch) {
-		default:
-			log_warnx("warn: filter-plusdash: bad option");
-			return (1);
-			/* NOTREACHED */
-		}
-	}
-	argc -= optind;
-	argv += optind;
-
 	log_debug("debug: filter-plusdash: starting...");
 
 	filter_api_on_rcpt(on_rcpt);

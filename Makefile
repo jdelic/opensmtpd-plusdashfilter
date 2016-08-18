@@ -1,13 +1,8 @@
 
-.DEFAULT: help
+.DEFAULT: filter-plusdash
 .PHONY: dist upload
 
 CFLAGS = -std=c99 -g -O2 -fstack-protector-strong -Wformat -Werror=format-security  -fPIC -DPIC -Wall -Wpointer-arith -Wuninitialized -Wsign-compare -Wformat-security -Wsizeof-pointer-memaccess -Wno-pointer-sign -Wno-unused-result -fno-strict-aliasing -fno-builtin-memset
-
-help:
-	@echo ""
-	@echo "targets are: filter-plusdash, dist and upload"	
-	@echo ""
 
 filter-plusdash:
 	gcc $(CFLAGS) \
@@ -56,7 +51,7 @@ upload: opensmtpd-extras-plusdash_1.0.deb
 	$(APTLY) repo remove maurusnet 'Name (opensmtpd-extras-plusdash)'
 	$(APTLY) repo add maurusnet opensmtpd-extras-plusdash_1.0.deb
 	$(APTLY) publish list -raw | grep -q s3:maurusnet && \
-		$(VW) publish update -architectures="amd64" -force-overwrite \
+		$(VW) publish update -architectures="amd64" \
 		    jessie s3:maurusnet:debian || \
 		$(VW) publish repo -architectures="amd64" -distribution="jessie" \
 			-component="main" maurusnet s3:maurusnet:debian
