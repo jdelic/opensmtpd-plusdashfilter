@@ -1,4 +1,4 @@
 *.o
 .git
-filter_plusdash
+filter-plusdash
 *.deb
