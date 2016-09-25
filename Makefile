@@ -27,14 +27,14 @@ filter-plusdash:
 		-levent \
 		-o filter-plusdash
 
-opensmtpd-extras-plusdash_1.0.deb: filter-plusdash
+opensmtpd-extras-plusdash_1.0.1.deb: filter-plusdash
 	/usr/local/bin/fpm \
 		-t deb \
 		-s dir \
-		-p opensmtpd-extras-plusdash_1.0.deb \
+		-p opensmtpd-extras-plusdash_1.0.1.deb \
 	    -n opensmtpd-extras-plusdash \
 	    --provides plusdashfilter \
-	    -v 1.0 \
+	    -v 1.0.1 \
 		-m "Jonas Maurus" \
 		-d opensmtpd-extras \
 		--url https://github.com/jdelic/opensmtpd-plusdashfilter \
@@ -45,11 +45,11 @@ opensmtpd-extras-plusdash_1.0.deb: filter-plusdash
 APTLY = /usr/bin/aptly -config /etc/aptly/aptly.conf
 VW = /home/vagrant/gopythongo/bin/vaultwrapper --wrap-mode=aptly --wrap-program=/usr/bin/aptly --app-id=d749f0fb-95a9-4ab4-9b7a-684d2800b4c8 --read-key=secret/gpg/package_sign_passphrase -config /etc/aptly/aptly.conf -keyring=/etc/gpg-managed-keyring/pubring.gpg -secret-keyring=/etc/gpg-managed-keyring/secring.gpg
 
-dist: opensmtpd-extras-plusdash_1.0.deb
+dist: opensmtpd-extras-plusdash_1.0.1.deb
 
-upload: opensmtpd-extras-plusdash_1.0.deb
+upload: opensmtpd-extras-plusdash_1.0.1.deb
 	$(APTLY) repo remove maurusnet 'Name (opensmtpd-extras-plusdash)'
-	$(APTLY) repo add maurusnet opensmtpd-extras-plusdash_1.0.deb
+	$(APTLY) repo add maurusnet opensmtpd-extras-plusdash_1.0.1.deb
 	$(APTLY) publish list -raw | grep -q s3:maurusnet && \
 		$(VW) publish update -architectures="amd64" \
 		    jessie s3:maurusnet:debian || \
