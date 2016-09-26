@@ -70,5 +70,5 @@ main(int argc, char **argv)
 	filter_api_loop();
 	log_debug("debug: filter-plusdash: exiting");
 
-	return (1);
+	return (0);
 }
